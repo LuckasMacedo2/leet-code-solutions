@@ -1,0 +1,40 @@
+# Ignore arquivos de build e binários
+bin/
+obj/
+
+# Arquivos gerados pelo Visual Studio
+.vs/
+*.suo
+*.user
+*.cache
+*.csproj.user
+*.dbmdl
+*.sln.docstates
+
+# Configurações locais
+appsettings.Development.json
+secrets.json
+
+# Logs e debug
+*.log
+*.tlog
+
+# Pacotes e dependências
+packages/
+*.nupkg
+project.lock.json
+
+# Configurações do Rider/JetBrains
+.idea/
+*.DotSettings.user
+
+# Arquivos temporários
+temp/
+*.tmp
+
+# Arquivos do Docker
+docker-compose.override.yml
+
+# Configurações do sistema operacional
+.DS_Store
+Thumbs.db
