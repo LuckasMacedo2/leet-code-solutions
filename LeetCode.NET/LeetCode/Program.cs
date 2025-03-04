@@ -6,7 +6,129 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine(Average(new int[] { 48000, 59000, 99000, 13000, 78000, 45000, 31000, 17000, 39000, 37000, 93000, 77000, 33000, 28000, 4000, 54000, 67000, 6000, 1000, 11000 }));
+        Console.WriteLine(MaximumTime("?0:15"));
+    }
+
+    /// <summary>
+    /// 1736. Latest Time by Replacing Hidden Digits
+    /// </summary>
+    public static string MaximumTime(string time)
+    {
+        char[] timeArray = time.ToCharArray();
+
+        if (timeArray[0] == '?')
+            if(timeArray[1] > '3' && timeArray[1] != '?')
+                timeArray[0] = '1';
+            else
+                timeArray[0] = '2';
+
+        if (timeArray[1] == '?')
+                if (timeArray[0] == '2')
+                    timeArray[1] = '3';
+                else
+                    timeArray[1] = '9';
+
+        if (timeArray[3] == '?')
+            timeArray[3] = '5';
+
+        if (timeArray[4] == '?')
+                timeArray[4] = '9';
+
+
+        return new string(timeArray);
+    }
+
+    /// <summary>
+    /// 1672. Richest Customer Wealth
+    /// </summary>
+    public int MaximumWealth(int[][] accounts)
+    {
+        int maior = 0;
+
+        for (int i = 0; i < accounts.Length; i++)
+        {
+            var soma = accounts[i].Sum();
+            if (soma > maior)
+                maior = soma;
+        }
+
+        return maior;
+    }
+
+    /// <summary>
+    /// 1662. Check If Two String Arrays are Equivalent
+    /// </summary>
+    public static bool ArrayStringsAreEqual(string[] word1, string[] word2) => string.Join("", word1).Equals(string.Join("", word2));
+
+    /// <summary>
+    /// 1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence
+    /// </summary>
+    public int IsPrefixOfWord(string sentence, string searchWord)
+    {
+        var words = sentence.Split(" ");
+
+        for (int i = 0; i < words.Length; i++)
+            if (words[i].StartsWith(searchWord)) return i + 1;
+
+        return -1;
+    }
+
+    /// <summary>
+    /// 1446. Consecutive Characters
+    /// </summary>
+    public int MaxPower(string s)
+    {
+        var caracterAnterior = s[0];
+        int count = 1;
+        int max = 0;
+        for (int i = 0; i < s.Length; i++)
+        {
+            if(caracterAnterior == s[i])
+            {
+                count++;
+                if (count > max) max = count;
+            }
+            else
+            {
+                caracterAnterior = s[i];
+                count = 1;
+            }
+        }
+        return max;
+    }
+
+    /// <summary>
+    /// 1437. Check If All 1's Are at Least Length K Places Away
+    /// </summary>
+    public bool KLengthApart(int[] nums, int k)
+    {
+        int count = -1;
+
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (nums[i] == 1)
+            {
+                if (count != -1 && count < k) return false;
+                count = 0;
+            }
+            else if (count != -1) count++;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// 1431. Kids With the Greatest Number of Candies
+    /// </summary>
+    public IList<bool> KidsWithCandies(int[] candies, int extraCandies)
+    {
+        List<bool> result = new List<bool>();
+        var max = candies.Max();
+
+
+        foreach (var item in candies)
+            result.Add(item + extraCandies >= max);
+        return result;
     }
 
     /// <summary>
