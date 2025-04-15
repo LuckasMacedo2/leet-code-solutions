@@ -10,6 +10,27 @@ public class Program
     }
 
     /// <summary>
+    /// 2185. Counting Words With a Given Prefix
+    /// </summary>
+    public int PrefixCount(string[] words, string pref)
+    {
+        return words.Count(x => x.StartsWith(pref));
+    }
+
+    /// <summary>
+    /// 2011. Final Value of Variable After Performing Operations
+    /// </summary>
+    public int FinalValueAfterOperations(string[] operations)
+    {
+        var result = 0;
+
+        foreach (var item in operations)
+            result += item.Contains("++") ? 1 : -1;
+
+        return result;
+    }
+
+    /// <summary>
     /// 1736. Latest Time by Replacing Hidden Digits
     /// </summary>
     public static string MaximumTime(string time)
