@@ -1,12 +1,104 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class Program
 {
     public static void Main(string[] args)
     {
         Console.WriteLine(MaximumTime("?0:15"));
+    }
+
+    /// <summary>
+    /// 3099. Harshad Number
+    /// </summary>
+    public int SumOfTheDigitsOfHarshadNumber(int x)
+    {
+        var sum = 0;
+        foreach (var num in x.ToString())
+        {
+            sum += int.Parse(num.ToString());
+        }
+
+        if (sum == 0)
+            return -1;
+
+        return sum > 0 && x % sum == 0 ? sum : -1;
+    }
+
+    /// <summary>
+    /// 3079. Find the Sum of Encrypted Integers
+    /// </summary>
+    public int SumOfEncryptedInt(int[] nums)
+    {
+        int sum = 0;
+
+        foreach (var num in nums)
+        {
+            var numStr = num.ToString();
+            var biggest = numStr.OrderByDescending(x => x).First();
+
+            sum += int.Parse(new string(biggest, numStr.Length));
+        }
+
+        return sum;
+    }
+
+    /// <summary>
+    /// 3024. Type of Triangle
+    /// </summary>
+    public string TriangleType(int[] nums)
+    {
+        var a = nums[0];
+        var b = nums[1];
+        var c = nums[2];
+
+        if (!(
+            a + b > c &&
+            a + c > b &&
+            b + c > a
+            ))
+            return "none";
+
+        if (a == b && b  == c) return "equilateral";
+
+        if (a == b || b == c || a == c) return "isosceles";
+
+        if (a != b && b != c) return "scalene";
+
+        return "isosceles";
+    }
+
+    /// <summary>
+    /// 2942. Find Words Containing Character
+    /// </summary>
+    public IList<int> FindWordsContaining(string[] words, char x)
+    {
+        // Best time
+        IList<int> result = new List<int>();
+
+        for (int i = 0; i < words.Length; i++)
+            if (words[i].Contains(x)) result.Add(i);
+
+        return result;
+
+        // Worst time
+        /*
+        return words
+            .Select((word, index) => new { word, index })
+            .Where(w => w.word.Contains(x))
+            .Select(w => w.index)
+            .ToList();*/
+    }
+
+    /// <summary>
+    /// 2798. Number of Employees Who Met the Target
+    /// </summary>
+    public int NumberOfEmployeesWhoMetTarget(int[] hours, int target)
+    {
+        return hours.Count(x => x >= target);
     }
 
     /// <summary>
