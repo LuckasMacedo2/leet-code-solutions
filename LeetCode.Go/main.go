@@ -41,6 +41,7 @@ func isBalanced(num string) bool {
 	return oddSum == evenSum
 }
 
+// 3492. Maximum Containers on a Ship
 func maxContainers(n int, w int, maxWeight int) int {
 	if n*n > maxWeight/w {
 		return maxWeight / w
